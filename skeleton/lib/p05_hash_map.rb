@@ -10,12 +10,21 @@ class HashMap
   end
 
   def include?(key)
+    bucket(key).include?(key)
   end
 
   def set(key, val)
+    bin = bucket(key)
+    if bin.include?(key)
+      bin.update(key, val)
+    else
+      bin.append(key, val)
+      @count += 1
+    end
   end
 
   def get(key)
+    bucket(key).get(key)
   end
 
   def delete(key)
@@ -46,5 +55,6 @@ class HashMap
 
   def bucket(key)
     # optional but useful; return the bucket corresponding to `key`
+    @store[key.hash % num_buckets]
   end
 end
