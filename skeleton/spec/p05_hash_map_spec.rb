@@ -86,6 +86,7 @@ describe HashMap do
       hash.each do |k, v|
         result << [k, v]
       end
+      p result
       expect(result.sort).to eq(goal)
     end
 

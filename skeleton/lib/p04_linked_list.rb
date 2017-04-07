@@ -70,7 +70,13 @@ class LinkedList
   end
 
   def remove(key)
-    self.each {|link| link.remove if link.key == key }
+    self.each do |link|
+      if link.key == key
+        link.remove
+        return true
+      end
+    end
+    false
   end
 
   def each(&prc)
