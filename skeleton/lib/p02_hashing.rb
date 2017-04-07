@@ -2,15 +2,21 @@ class Fixnum
   # Fixnum#hash already implemented for you
 end
 
-class Array
-  def hash
-    self.each.with_index.reduce(0) { |hash, (el, i)| hash ^ el * i }.hash
-  end
-end
-
 class String
   def hash
     self.chars.map(&:ord).hash
+  end
+end
+
+class Array
+  def hash
+    self.each.with_index.reduce(0) do |hash, (el, i)|
+      if(el.is_a?(Array))
+        hash ^ el.hash * i
+      else
+        hash ^ el * i
+      end
+    end.hash
   end
 end
 
