@@ -95,13 +95,13 @@ describe LinkedList do
       expect(list_vals_yielded).to eq(list_vals_ordered)
     end
 
-  describe "#[]" do
-    it "can look up links by index" do
-      expect(list[0].key).to eq(:first)
-      expect(list[1].key).to eq(:second)
-      expect(list[2].key).to eq(:third)
+    describe "#[]" do
+      it "can look up links by index" do
+        expect(list[0].key).to eq(:first)
+        expect(list[1].key).to eq(:second)
+        expect(list[2].key).to eq(:third)
+      end
     end
-  end
 
     it "includes Enumerable module" do
       expect(list.class.ancestors).to include(Enumerable)
