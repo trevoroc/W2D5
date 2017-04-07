@@ -31,8 +31,8 @@ class HashMap
 
   def delete(key)
     bin = bucket(key)
-    suc = bin.remove(key)
-    @count -= 1 if suc
+    deleted = bin.remove(key)
+    @count -= 1 if deleted
   end
 
   def each &prc
