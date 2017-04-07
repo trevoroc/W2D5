@@ -30,12 +30,15 @@ class DynamicArray
   def initialize(capacity = 8)
     @store = StaticArray.new(capacity)
     @count = 0
+    @first_index = 0
   end
 
   def [](i)
+    @store[get_index(i)]
   end
 
   def []=(i, val)
+    @store[get_index(i)] = val
   end
 
   def capacity
@@ -43,24 +46,47 @@ class DynamicArray
   end
 
   def include?(val)
+    capacity.times do |i|
+      return true if @store[i] == val
+    end
+    false
   end
 
   def push(val)
+    # TODO: Resize later
+    @store[get_index(count)] = val
+    @count += 1
   end
 
   def unshift(val)
+    
   end
 
   def pop
+    @count -= 1 if @count != 0
+    popped = @store[get_index(count)]
+    @store[get_index(count)] = nil
+    popped
   end
 
   def shift
+    if @count == 0
+      nil
+    else
+      @count -= 1
+      shifted = first
+      @store[@first_index] = nil
+      @first_index = (@first_index + 1) % capacity
+      shifted
+    end
   end
 
   def first
+    @store[@first_index]
   end
 
   def last
+    @store[get_index(@count - 1)]
   end
 
   def each
@@ -81,5 +107,9 @@ class DynamicArray
   private
 
   def resize!
+  end
+
+  def get_index(num)
+    (num + @first_index) % capacity
   end
 end
