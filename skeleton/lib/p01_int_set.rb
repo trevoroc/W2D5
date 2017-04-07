@@ -16,7 +16,6 @@ class MaxIntSet
   end
 
   private
-
   def helper(num, &prc)
     if num.between?(0, @store.length-1)
       prc.call(num)
@@ -24,15 +23,7 @@ class MaxIntSet
       raise "Out of bounds"
     end
   end
-
-  # def is_valid?(num)
-  #
-  # end
-  #
-  # def validate!(num)
-  # end
 end
-
 
 class IntSet
   def initialize(num_buckets = 20)
@@ -110,5 +101,5 @@ class ResizingIntSet
     old_store.flatten.each {|el| insert(el) }
   end
 
-  
+
 end
