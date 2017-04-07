@@ -40,20 +40,23 @@ class IntSet
   end
 
   def insert(num)
-    @store[num % @store.length] << num
+    self[num] << num unless include?(num)
   end
 
   def remove(num)
-    
+    self[num].each.with_index { |el, i| self[num].delete_at(i) if num == el }
   end
 
   def include?(num)
+    self[num].each { |el| return true if num == el }
+    false
   end
 
   private
 
   def [](num)
     # optional but useful; return the bucket corresponding to `num`
+    @store[num % num_buckets]
   end
 
   def num_buckets
