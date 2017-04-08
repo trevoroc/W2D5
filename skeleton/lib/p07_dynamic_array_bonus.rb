@@ -34,6 +34,7 @@ class DynamicArray
   end
 
   def [](i)
+    return nil if i.between?(-capacity, )
     @store[get_index(i)]
   end
 
@@ -59,7 +60,9 @@ class DynamicArray
   end
 
   def unshift(val)
-    
+    @first_index = get_index(-1)
+    @store[get_index(0)] = val
+    @count += 1
   end
 
   def pop

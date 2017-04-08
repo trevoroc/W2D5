@@ -52,6 +52,7 @@ describe DynamicArray do
       arr.push(1)
       arr.push(2)
       arr.unshift(0)
+      p arr
       expect(arr[0]).to eq(0)
       expect(arr[1]).to eq(1)
       expect(arr[2]).to eq(2)
